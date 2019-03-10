@@ -22,9 +22,9 @@ let StatusColumn = (props) => {
       <div className={columnStyles.columnTitle}>{props.status.title} ({tasks.length})</div>
       <div className={columnStyles.columnContents}>
         {tasks.length === 0 && <div>No tasks</div>}
-        {tasks.length > 0 && tasks.map((task) => {
+        {tasks.length > 0 && tasks.map((task, i) => {
           return (
-            <TaskCard task={task} />
+            <TaskCard key={i} task={task} />
           )
         })}
       </div>

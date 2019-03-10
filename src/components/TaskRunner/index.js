@@ -179,13 +179,13 @@ class TaskRunner extends React.Component {
               formInfo={this.state.formInfo} />
           </div>
 
-          {this.statuses.map((status) => {
+          {this.statuses.map((status, i) => {
             let filteredTasks = this.state.tasks.filter((el) => {
               return status.valid.includes(el.status);
             });
 
             return (
-              <div>
+              <div key={i}>
                 <TaskStatusColumn tasks={filteredTasks} status={status} reverse={status.reverse} />
               </div>
             )
