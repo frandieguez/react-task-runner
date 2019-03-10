@@ -1,3 +1,10 @@
+.status {
+  font-size:.8rem;
+  padding-bottom:.5rem;
+  display:block;
+  text-align:center;
+}
+
 @media (min-width: 768px) {
 
   .wrapper {
@@ -12,10 +19,4 @@
     width: 33%;
   }
 
-  .status {
-    font-size:.8rem;
-    padding-bottom:.5rem;
-    display:block;
-    text-align:center;
-  }
 }
