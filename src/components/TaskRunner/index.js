@@ -169,7 +169,7 @@ class TaskRunner extends React.Component {
   render() {
     return (
       <div>
-        <span>Running: {this.state.runningTasks} / Total tasks: {this.state.tasks.length}</span>
+        <span className={taskRunnerStyles.status}>Running: {this.state.runningTasks} / Total tasks: {this.state.tasks.length}</span>
         <div className={taskRunnerStyles.wrapper}>
           <div className={taskRunnerStyles.form}>
             <TaskForm

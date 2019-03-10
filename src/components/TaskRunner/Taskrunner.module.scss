@@ -1,15 +1,21 @@
 @media (min-width: 768px) {
 
-    .wrapper {
-      display: flex;
-      flex-wrap: wrap;
-    }
-
-    .wrapper > * {
-      align-self: flex-start;
-      align-content: stretch;
-      flex-grow: 1;
-      width: 33%;
-    }
-
+  .wrapper {
+    display: flex;
+    flex-wrap: wrap;
   }
+
+  .wrapper > * {
+    align-self: flex-start;
+    align-content: stretch;
+    flex-grow: 1;
+    width: 33%;
+  }
+
+  .status {
+    font-size:.8rem;
+    padding-bottom:.5rem;
+    display:block;
+    text-align:center;
+  }
+}
