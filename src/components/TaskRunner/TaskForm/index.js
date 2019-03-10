@@ -1,5 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types';
+import taskFormStyles from './TaskForm.module.scss';
 
 class TaskForm extends React.Component {
 
@@ -9,10 +10,11 @@ class TaskForm extends React.Component {
 
   render() {
     return (
-      <form onSubmit={this.props.addTask}>
+      <form onSubmit={this.props.addTask} className={taskFormStyles.form}>
         Please add your new tasks with the form below:
 
         <input
+            className={taskFormStyles.formInput}
             placeholder="Describe your next task"
             onChange={this.props.handleInput}
             value={this.props.formInfo.name}
@@ -20,7 +22,7 @@ class TaskForm extends React.Component {
             autoFocus
             />
 
-        <button type="submit"> Queue it! </button>
+        <button type="submit" className={taskFormStyles.formButton}> Queue it! </button>
       </form>
     )
   }
