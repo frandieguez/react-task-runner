@@ -30,6 +30,9 @@ let TaskCard = (props) => {
       </div>
       <div className={taskCardStyles.taskTitle}>
         {props.task.name}
+        {['DONE','FAILED'].includes(props.task.status) && (
+          <span>{` `} ({props.task.ttl / 1000} segs)</span>
+        )}
       </div>
     </div>
   )
