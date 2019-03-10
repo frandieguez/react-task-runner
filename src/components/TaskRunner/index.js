@@ -14,19 +14,20 @@ class TaskRunner extends React.Component {
 
     // Gonna create some tasks on start to debug
     for (let index = 0; index < 5; index++) {
-      tasks.push(this.createTask({name: `Example task ${Math.random()}`}))
+      tasks.push(this.createTask({name: `Example task ${index + 1}`}))
     }
 
     // The state handles the list of tasks and the current form information
     this.state = {
       tasks: tasks,
       formInfo: { name: '' },
+      runningTasks: 0,
     }
 
     this.inputElement = React.createRef();
     this.statuses = [
       {title: 'Tasks running & pending', valid: ['PENDING', 'RUNNING']},
-      {title: 'Tasks completed',         valid: ['DONE', 'FAILED']},
+      {title: 'Tasks completed',         valid: ['DONE', 'FAILED'], reverse: true},
     ];
   }
 
@@ -61,27 +62,30 @@ class TaskRunner extends React.Component {
   render() {
 
     return (
-      <div className={taskRunnerStyles.wrapper}>
-        <div className={taskRunnerStyles.form}>
-          <TaskForm
-            addTask={this.addTask}
-            inputElement={this.inputElement}
-            handleInput={this.handleInput}
-            onChange={this.handleInput}
-            formInfo={this.state.formInfo} />
+      <div>
+        <span>Running: {this.state.runningTasks} / Total tasks: {this.state.tasks.length}</span>
+        <div className={taskRunnerStyles.wrapper}>
+          <div className={taskRunnerStyles.form}>
+            <TaskForm
+              addTask={this.addTask}
+              inputElement={this.inputElement}
+              handleInput={this.handleInput}
+              onChange={this.handleInput}
+              formInfo={this.state.formInfo} />
+          </div>
+
+          {this.statuses.map((status) => {
+            let filteredTasks = this.state.tasks.filter((el) => {
+              return status.valid.includes(el.status);
+            });
+
+            return (
+              <div>
+                <TaskStatusColumn tasks={filteredTasks} status={status} reverse={status.reverse} />
+              </div>
+            )
+          })}
         </div>
-
-        {this.statuses.map((status) => {
-          let filteredTasks = this.state.tasks.filter((el) => {
-            return status.valid.includes(el.status);
-          });
-
-          return (
-            <div>
-              <TaskStatusColumn tasks={filteredTasks} status={status} />
-            </div>
-          )
-        })}
       </div>
     )
   }

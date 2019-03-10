@@ -3,12 +3,17 @@ import columnStyles from './Taskstatuscolumn.module.scss';
 import TaskCard from './TaskCard';
 
 let StatusColumn = (props) => {
+  let tasks = props.tasks;
+
+  if (props.reverse) {
+    tasks = tasks.reverse()
+  }
   return (
     <div className={columnStyles.column}>
-      <div className={columnStyles.columnTitle}>{props.status.title} ({props.tasks.length})</div>
+      <div className={columnStyles.columnTitle}>{props.status.title} ({tasks.length})</div>
       <div className={columnStyles.columnContents}>
-        {props.tasks.length === 0 && <div>No tasks</div>}
-        {props.tasks.length > 0 && props.tasks.map((task) => {
+        {tasks.length === 0 && <div>No tasks</div>}
+        {tasks.length > 0 && tasks.map((task) => {
           return (
             <TaskCard task={task} />
           )
