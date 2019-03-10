@@ -3,9 +3,9 @@ import PropTypes from 'prop-types'
 /** Class representing a task. */
 class Task {
   /**
-   * Create a point.
-   * @param {number} x - The x value.
-   * @param {number} y - The y value.
+   * Creates a task.
+   *
+   * @param {string} name - The name of the task.
    */
   constructor(name) {
     this.key    = Date.now();

@@ -10,8 +10,9 @@ class TaskRunner extends React.Component {
   constructor(props) {
     super(props)
 
-    // Gonna create some tasks on start to debug
     let tasks = [];
+
+    // Gonna create some tasks on start to debug
     for (let index = 0; index < 5; index++) {
       tasks.push(this.createTask({name: `Example task ${Math.random()}`}))
     }

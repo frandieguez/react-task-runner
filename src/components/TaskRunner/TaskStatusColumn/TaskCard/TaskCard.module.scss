@@ -10,3 +10,14 @@
   z-index: 0;
   padding: 1rem;
 }
+
+.taskIcon,
+.taskTitle {
+  display:inline-block;
+  vertical-align: middle;
+}
+
+.taskTitle {
+  line-height:.8rem;
+  margin-left: 1rem;
+}
