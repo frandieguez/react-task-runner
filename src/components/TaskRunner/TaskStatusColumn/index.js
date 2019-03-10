@@ -1,5 +1,6 @@
 import React from 'react';
-import columnStyles from './Taskstatuscolumn.module.scss'
+import columnStyles from './Taskstatuscolumn.module.scss';
+import TaskCard from './TaskCard';
 
 let StatusColumn = (props) => {
   return (
@@ -9,7 +10,7 @@ let StatusColumn = (props) => {
         {props.tasks.length === 0 && <div>No tasks</div>}
         {props.tasks.length > 0 && props.tasks.map((task) => {
           return (
-            <div>{task.name}</div>
+            <TaskCard task={task} />
           )
         })}
       </div>
