@@ -16,6 +16,10 @@ class TaskRunner extends React.Component {
     }
 
     this.inputElement = React.createRef();
+    this.statuses = [
+      {title: 'Tasks running & pending', valid: ['PENDING', 'RUNNING']},
+      {title: 'Tasks completed',         valid: ['DONE', 'FAILED']},
+    ];
   }
 
   handleInput = e => {
@@ -55,9 +59,20 @@ class TaskRunner extends React.Component {
             formInfo={this.state.formInfo} />
         </div>
 
-        <div>running & pending</div>
 
-        <div>done & failed</div>
+
+        {this.statuses.map((status) => {
+          let filteredTasks = this.state.tasks.filter((el) => {
+            return status.valid.includes(el.status);
+          });
+
+          return (
+            <div>
+              <div>{status.title}</div>
+              ({filteredTasks.length})
+            </div>
+          )
+        })}
       </div>
     )
   }
