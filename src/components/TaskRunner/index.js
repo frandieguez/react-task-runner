@@ -1,23 +1,37 @@
 import React from 'react';
 import taskRunnerStyles from './Taskrunner.module.scss';
-import TaskForm from './TaskForm';
 import Task from '../../libs/Task';
 
+// Subcomponents
+import TaskForm from './TaskForm';
 import TaskStatusColumn from './TaskStatusColumn';
 
-class TaskRunner extends React.Component {
 
+/**
+ * Component that handles serves handles the task execution and orchestrates
+ * and updates all child components
+ *
+ * @author [Fran Dieguez](https://github.com/frandieguez)
+ */
+class TaskRunner extends React.Component {
+  /**
+   * Initializes the Component from a list of props.
+   *
+   * @param {Array} props The list of properties passed when the component starts
+   */
   constructor(props) {
     super(props)
 
     let tasks = [];
 
-    // Gonna create some tasks on start to debug
+    // In order to have some tasks when the app starts let's
+    // create some of them
     for (let index = 0; index < 5; index++) {
       tasks.push(this.createTask({name: `Example task ${index + 1}`}))
     }
 
-    // The state handles the list of tasks and the current form information
+    // The state handles the list of tasks, the updated form information and
+    // the running tasks
     this.state = {
       tasks: tasks,
       formInfo: { name: '' },
@@ -25,12 +39,20 @@ class TaskRunner extends React.Component {
     }
 
     this.inputElement = React.createRef();
+
+    // List of available statuses grouped by execution meaning.
     this.statuses = [
       {title: 'Tasks running & pending', valid: ['PENDING', 'RUNNING']},
       {title: 'Tasks completed',         valid: ['DONE', 'FAILED'], reverse: true},
     ];
   }
 
+  /**
+   * Saves the current form information into the state so
+   * the component can later use it to create a new task.
+   *
+   * @param {SyntheticEvent} e The event dispatched by the input onChange
+   */
   handleInput = e => {
     const formInfo = {
       name: e.target.value
@@ -41,10 +63,20 @@ class TaskRunner extends React.Component {
     })
   }
 
+  /**
+   * Creates a Task object from the provided info.
+   *
+   * @param {Array} data The task information to create from
+   */
   createTask = data => {
     return new Task(data.name);
   }
 
+  /**
+   * Handles the form submission event,
+   *
+   * @param {SyntheticEvent} e The event dispatched when the form is submitted
+   */
   addTask = e => {
     e.preventDefault()
     const newTask = this.state.formInfo;
@@ -61,10 +93,17 @@ class TaskRunner extends React.Component {
     }
   }
 
+  /**
+   * Start the task queue processing when the component is mounted.
+   */
   componentDidMount = () => {
     this.processQueue();
   }
 
+  /**
+   * Checks the task queue and executes them.
+   * The design is open to run multiple tasks in parallel
+   */
   processQueue() {
     if (this.state.runningTasks > 0) {
       return;
@@ -83,6 +122,10 @@ class TaskRunner extends React.Component {
     this.runTask(task);
   }
 
+  /**
+   * Executes a provided task and updates its state in the list
+   * @param {Task} task the task to execute
+   */
   async runTask(task) {
     this.setState({
       runningTasks: this.state.runningTasks + 1
@@ -101,6 +144,12 @@ class TaskRunner extends React.Component {
     });
   }
 
+  /**
+   * Updates a task status
+   *
+   * @param {Task} task the task to update its status
+   * @param {string} status the status name
+   */
   updateTaskStatus(task, status) {
     let index = this.state.tasks.indexOf(task);
 
@@ -113,8 +162,10 @@ class TaskRunner extends React.Component {
     });
   }
 
+  /**
+   * Renders the component
+   */
   render() {
-
     return (
       <div>
         <span>Running: {this.state.runningTasks} / Total tasks: {this.state.tasks.length}</span>

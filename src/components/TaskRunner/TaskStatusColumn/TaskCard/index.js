@@ -2,6 +2,14 @@ import React from 'react';
 import taskCardStyles from './TaskCard.module.scss';
 import Icon from '@material-ui/core/Icon';
 
+import PropTypes from 'prop-types';
+
+/**
+ * Component that renders a task indicating its current status, and if it
+ * was already executed it shows the time that took to be executed.
+ *
+ * @param {Array} props the list of properties
+ */
 let TaskCard = (props) => {
   let icon;
 

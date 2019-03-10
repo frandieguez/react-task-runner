@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import appStyles from './App.module.scss';
 import TaskRunner from '../TaskRunner';
 
+/**
+ * Component that renders all the application and initializes the TaskRunner
+ */
 class App extends Component {
   render() {
     return (

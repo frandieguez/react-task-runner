@@ -2,12 +2,20 @@ import React from 'react'
 import PropTypes from 'prop-types';
 import taskFormStyles from './TaskForm.module.scss';
 
+/**
+ * Component that renders a form with input + button and propagates
+ * events upwards when the user submits the form.
+ */
 class TaskForm extends React.Component {
 
+  /**
+   * Focuses the input after the component was mounted
+   */
   componentDidUpdate() {
     this.props.inputElement.current.focus()
   }
 
+  // Renders the component
   render() {
     return (
       <form onSubmit={this.props.addTask} className={taskFormStyles.form}>
@@ -28,6 +36,7 @@ class TaskForm extends React.Component {
   }
 }
 
+// Default values for the props
 TaskForm.propTypes = {
   addTask: PropTypes.func.isRequired,
   formInfo: PropTypes.object.isRequired,
