@@ -10,6 +10,7 @@ This project runs a fictional task runner in the browser:
 * what tasks are already executed alongside its result (SUCCESS or FAILED) and time of execution
 - The UI must allow to add new tasks to the queue
 
+![Screenshot](public/screenshot.png?raw=true "Screenshot")
 
 ## Available Scripts
 
