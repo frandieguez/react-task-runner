@@ -119,7 +119,9 @@ class TaskRunner extends React.Component {
 
     let task = pendingTasks.shift();
 
-    this.runTask(task);
+    this.runTask(task).then(()=> {
+      this.processQueue();
+    });
   }
 
   /**
@@ -139,8 +141,6 @@ class TaskRunner extends React.Component {
 
     this.setState({
       runningTasks: this.state.runningTasks - 1
-    }, () => {
-      this.processQueue();
     });
   }
 
