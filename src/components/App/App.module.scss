@@ -1,18 +1,54 @@
-.App {
+
+$bgColor: rgb(0, 121, 191);
+$borderColor: #ccc;
+
+.header {
+  background-color: #026aa7;
   text-align: center;
+  padding:.5rem;
 }
 
-.AppHeader {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+
+.headerTitle {
+  font-size:1.2rem;
+  line-height: .4 rem;
+  text-align: left;
+  font-weight: normal;
+  padding:.3rem;
+  text-transform: uppercase;
+  font-weight: bold;
 }
 
-.AppLink {
-  color: #61dafb;
+.copyright {
+  position: fixed;
+  top:2rem;
+  right:10px;
+  font-size: .8rem;
+  opacity: .8;
+  transition: opacity 150ms
+
+}
+.copyright a {
+    color: White !important;
+    font-weight: bold;
+    text-decoration: none;
+}
+.copyright a:hover {
+  text-decoration: underline;
+}
+
+.copyright:hover {
+  opacity: 1;
+}
+
+.runnerWrapper {
+  padding: 1rem;
+}
+
+@media (max-width: 767px) {
+
+  .copyright {
+    display:none;
+  }
+
 }
