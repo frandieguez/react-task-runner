@@ -48,7 +48,7 @@ class TaskRunner extends React.Component {
     const newTask = this.state.formInfo.name;
 
     if (newTask.name !== '') {
-      let task = new Task(newTask.name);
+      let task = new Task(newTask);
 
       this.setState({
         tasks: [task, ...this.state.tasks ],
