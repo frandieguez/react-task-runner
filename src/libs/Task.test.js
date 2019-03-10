@@ -19,7 +19,6 @@ test('Create an invalid task', async () => {
   let task = new Task('title');
 
   // To speed up tests we will overwrite the ttl property.
-
   task.ttl = 0;
 
   let result = await task.run();
