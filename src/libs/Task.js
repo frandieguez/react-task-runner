@@ -13,16 +13,17 @@ class Task {
    * @param {string} name - The name of the task.
    */
   constructor(name) {
+    if (name === undefined || name.length === 0) {
+      throw new Error();
+    }
+
     this.key    = Math.random();
     this.name   = name;
     this.status = 'PENDING';
+    this.ttl = getRandomNumber(MIN_SECONDS, MAX_SECONDS) * MILISECONDS_IN_A_SEC;
   }
 
   async run() {
-    this.ttl =
-      getRandomNumber(MIN_SECONDS, MAX_SECONDS)
-      * MILISECONDS_IN_A_SEC;
-
     // Complete the task after the ttl time.
     await sleep(this.ttl);
 
