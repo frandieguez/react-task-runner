@@ -8,10 +8,15 @@ class TaskRunner extends React.Component {
   constructor(props) {
     super(props)
 
-    // The state handles the list of tasks, the current form information
-    // and the tasks that are running
+    // Gonna create some tasks on start to debug
+    let tasks = [];
+    for (let index = 0; index < 5; index++) {
+      tasks.push(this.createTask({name: `Example task ${Math.random()}`}))
+    }
+
+    // The state handles the list of tasks and the current form information
     this.state = {
-      tasks: [],
+      tasks: tasks,
       formInfo: { name: '' },
     }
 
@@ -30,6 +35,10 @@ class TaskRunner extends React.Component {
     this.setState({
       formInfo,
     })
+  }
+
+  createTask = data => {
+    return new Task(data.name);
   }
 
   addTask = e => {
