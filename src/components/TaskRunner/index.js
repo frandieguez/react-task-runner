@@ -46,13 +46,13 @@ class TaskRunner extends React.Component {
 
   addTask = e => {
     e.preventDefault()
-    const newTask = this.state.formInfo.name;
+    const newTask = this.state.formInfo;
 
     if (newTask.name !== '') {
-      let task = new Task(newTask);
+      let task = this.createTask(newTask);
 
       this.setState({
-        tasks: [task, ...this.state.tasks ],
+        tasks: [...this.state.tasks, task ],
         formInfo: { name: '', key: '' },
       })
     }
