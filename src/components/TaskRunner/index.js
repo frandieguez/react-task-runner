@@ -55,12 +55,10 @@ class TaskRunner extends React.Component {
       this.setState({
         tasks: [...this.state.tasks, task ],
         formInfo: { name: '', key: '' },
-      })
+      }, () => {
+        this.processQueue();
+      });
     }
-
-    setTimeout(() => {
-      this.processQueue()
-    }, 10);
   }
 
   componentDidMount = () => {
@@ -86,7 +84,6 @@ class TaskRunner extends React.Component {
   }
 
   async runTask(task) {
-
     this.setState({
       runningTasks: this.state.runningTasks + 1
     })
@@ -99,11 +96,9 @@ class TaskRunner extends React.Component {
 
     this.setState({
       runningTasks: this.state.runningTasks - 1
-    });
-
-    setTimeout(() => {
+    }, () => {
       this.processQueue();
-    }, 10);
+    });
   }
 
   updateTaskStatus(task, status) {
