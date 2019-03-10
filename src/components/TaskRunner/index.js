@@ -1,7 +1,9 @@
 import React from 'react';
 import taskRunnerStyles from './Taskrunner.module.scss';
 import TaskForm from './TaskForm';
-import Task from '../../libs/Task'
+import Task from '../../libs/Task';
+
+import TaskStatusColumn from './TaskStatusColumn';
 
 class TaskRunner extends React.Component {
 
@@ -68,8 +70,6 @@ class TaskRunner extends React.Component {
             formInfo={this.state.formInfo} />
         </div>
 
-
-
         {this.statuses.map((status) => {
           let filteredTasks = this.state.tasks.filter((el) => {
             return status.valid.includes(el.status);
@@ -77,8 +77,7 @@ class TaskRunner extends React.Component {
 
           return (
             <div>
-              <div>{status.title}</div>
-              ({filteredTasks.length})
+              <TaskStatusColumn tasks={filteredTasks} status={status} />
             </div>
           )
         })}

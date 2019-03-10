@@ -1,0 +1,20 @@
+.column {
+  display:block;
+  white-space: normal;
+  color: #333;
+  margin-right: 1rem;
+  background-color: #dfe3e6;
+  border-radius: 3px;
+  padding-bottom:1rem;
+  margin-bottom:1rem;
+}
+
+.columnTitle {
+  font-size:1.1rem;
+  font-weight:bold;
+}
+
+.columnContents,
+.columnTitle {
+  padding: .7rem .5rem;
+}
