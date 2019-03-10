@@ -6,6 +6,7 @@ import Task from '../../libs/Task';
 import TaskForm from './TaskForm';
 import TaskStatusColumn from './TaskStatusColumn';
 
+const MAX_TASK_IN_PARALLEL = 1;
 
 /**
  * Component that handles serves handles the task execution and orchestrates
@@ -105,7 +106,7 @@ class TaskRunner extends React.Component {
    * The design is open to run multiple tasks in parallel
    */
   processQueue() {
-    if (this.state.runningTasks > 0) {
+    if (this.state.runningTasks >= MAX_TASK_IN_PARALLEL) {
       return;
     }
 
