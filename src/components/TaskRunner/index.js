@@ -57,6 +57,65 @@ class TaskRunner extends React.Component {
         formInfo: { name: '', key: '' },
       })
     }
+
+    setTimeout(() => {
+      this.processQueue()
+    }, 10);
+  }
+
+  componentDidMount = () => {
+    this.processQueue();
+  }
+
+  processQueue() {
+    if (this.state.runningTasks > 0) {
+      return;
+    }
+
+    let pendingTasks = this.state.tasks.filter((task) => {
+      return task.status === 'PENDING';
+    });
+
+    if (pendingTasks.length === 0) {
+      return;
+    }
+
+    let task = pendingTasks.shift();
+
+    this.runTask(task);
+  }
+
+  async runTask(task) {
+
+    this.setState({
+      runningTasks: this.state.runningTasks + 1
+    })
+
+    this.updateTaskStatus(task, 'RUNNING');
+
+    let status = await task.run()
+
+    this.updateTaskStatus(task, status);
+
+    this.setState({
+      runningTasks: this.state.runningTasks - 1
+    });
+
+    setTimeout(() => {
+      this.processQueue();
+    }, 10);
+  }
+
+  updateTaskStatus(task, status) {
+    let index = this.state.tasks.indexOf(task);
+
+    let tasks = this.state.tasks;
+    task.status = status;
+    tasks[index] = task;
+
+    this.setState({
+      tasks,
+    });
   }
 
   render() {
