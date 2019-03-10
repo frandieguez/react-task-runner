@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import columnStyles from './Taskstatuscolumn.module.scss';
 import TaskCard from './TaskCard';
 
@@ -30,6 +31,18 @@ let StatusColumn = (props) => {
       </div>
     </div>
   )
+}
+
+// Default values for the props
+StatusColumn.defaultProps = {
+  reverse: false,
+  tasks: []
+}
+
+// Type definition for the props
+StatusColumn.propTypes = {
+  reverse: PropTypes.bool,
+  tasks: PropTypes.array.isRequired
 }
 
 export default StatusColumn;

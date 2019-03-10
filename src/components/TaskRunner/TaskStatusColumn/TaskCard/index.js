@@ -46,4 +46,14 @@ let TaskCard = (props) => {
   )
 }
 
+// Default values for the props
+TaskCard.defaultProps = {
+  task: null
+}
+
+// Type definition for the props
+TaskCard.propTypes = {
+  Task: PropTypes.object,
+}
+
 export default TaskCard;
