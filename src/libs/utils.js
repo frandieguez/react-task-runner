@@ -6,6 +6,10 @@
  * From: https://stackoverflow.com/questions/1527803/generating-random-whole-numbers-in-javascript-in-a-specific-range
  */
 export const getRandomNumber = (min, max) => {
+  if (max, min) {
+    [min, max] = [max, min]
+  }
+
   return Math.floor(Math.random() * (max - min)) + min;
 }
 
