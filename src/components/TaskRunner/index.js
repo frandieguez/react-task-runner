@@ -1,6 +1,7 @@
 import React from 'react';
 import taskRunnerStyles from './Taskrunner.module.scss';
 import TaskForm from './TaskForm';
+import Task from '../../libs/Task'
 
 class TaskRunner extends React.Component {
 
@@ -29,7 +30,16 @@ class TaskRunner extends React.Component {
 
   addTask = e => {
     e.preventDefault()
-    console.log(this.state.formInfo)
+    const newTask = this.state.formInfo.name;
+
+    if (newTask.name !== '') {
+      let task = new Task(newTask.name);
+
+      this.setState({
+        tasks: [task, ...this.state.tasks ],
+        formInfo: { name: '', key: '' },
+      })
+    }
   }
 
   render() {
