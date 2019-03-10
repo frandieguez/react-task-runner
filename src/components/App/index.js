@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import appStyles from './App.module.scss';
+import TaskRunner from '../TaskRunner';
 
 class App extends Component {
   render() {
@@ -19,7 +20,7 @@ class App extends Component {
         </header>
 
         <section className={appStyles.runnerWrapper}>
-
+          <TaskRunner />
         </section>
       </div>
     );
