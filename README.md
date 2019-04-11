@@ -7,7 +7,7 @@ This project runs a fictional task runner in the browser:
 - The UI must allow see
 * what is in the queue of pending tasks to be executed
 * what is being executed now
-* what tasks are already executed alongside its result (SUCCESS or FAILED) and time of execution
+* which tasks are already executed alongside its result (SUCCESS or FAILED) and time of execution
 - The UI must allow to add new tasks to the queue
 
 ![Screenshot](public/screenshot.png?raw=true "Screenshot")
