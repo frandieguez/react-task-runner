@@ -1,5 +1,10 @@
 pipeline {
-  agent any
+  agent {
+    docker {
+      image 'node:6-alpine'
+    }
+
+  }
   stages {
     stage('Install Deps') {
       agent {
@@ -18,5 +23,8 @@ pipeline {
         sh 'npm run test'
       }
     }
+  }
+  environment {
+    CI = 'true'
   }
 }
